@@ -26,14 +26,14 @@
 
 ### Интеграции
 
-1. **Веб-приложение ↔ core-app**:
+1. **Веб-приложение - core-app**:
    - REST API для создания заявки на ОСАГО и получения тарифов (с Rate Limiting).
    - WebSocket для real-time отображения предложений ОСАГО по мере поступления.
 
-2. **core-app ↔ osago-aggregator**:
+2. **core-app - osago-aggregator**:
    - REST API для создания заявки и получения предложений (с Retry, Timeout).
 
-3. **osago-aggregator ↔ Системы страховых компаний**:
+3. **osago-aggregator - Системы страховых компаний**:
    - REST API для создания заявки и опроса предложений (с Circuit Breaker, Retry, Timeout).
 
 4. **Event-Driven через Kafka**:
@@ -56,13 +56,8 @@
 - Kafka обеспечивает масштабируемость и отказоустойчивость подписок/публикаций.
 - Redis для osago-aggregator поддерживает распределённое хранение заявок.
 
-## Диаграмма
-
-Диаграмма контейнеров `InsureTech_C4_osago.xml` отражает все компоненты, интеграции и паттерны. Открыть в draw.io для просмотра.
-
 ## Реализация
 
 - osago-aggregator: Асинхронно создаёт заявки во всех компаниях, опрашивает предложения каждые N секунд, публикует в Kafka.
 - core-app: Принимает заявку, передаёт в osago-aggregator, подписывается на Kafka для обновлений, отправляет через WebSocket в веб.
-- Веб: Отправляет заявку по REST, получает предложения по WebSocket для мгновенного отображения.</content>
-<parameter name="filePath">/Users/aussieman/projects/yandex/architecture-insecuretech/task4/README.md
+- Веб: Отправляет заявку по REST, получает предложения по WebSocket для мгновенного отображения.
