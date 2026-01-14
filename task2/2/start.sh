@@ -4,8 +4,6 @@ set -euo pipefail
 # Script to start port-forwarding for services.
 # Assumes services are already deployed via install.sh
 
-root_dir="$(cd "$(dirname "$0")" && pwd)"
-
 # Function to check if port is in use
 check_port() {
     local port=$1
